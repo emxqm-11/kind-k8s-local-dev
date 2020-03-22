@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: genesis
+spec:
+  selector:
+    matchLabels:
+      app: read-model-db
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: read-model-db
+    spec:
+      containers:
+      - name: genesis
+        image: nginx
+        ports:
+        - containerPort: 80

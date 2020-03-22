@@ -1,6 +1,6 @@
 # =========================
 # ASM
-ASM_VERSION=istio-1.4.5-asm.0
+ASM_VERSION=istio-1.4.6-asm.0
 
 asm.download: ##Download Istio from Google
 	@echo "Download ASM"
@@ -38,13 +38,15 @@ asm.generate:
 
 asm.set_profile:
 	@./$(ASM_VERSION)/bin/istioctl manifest apply --set profile=asm-onprem \
+	--set values.telemetry.enabled=true \
+	--set values.telemetry.v2.enabled=true \
+	--set values.tracing.enabled=true \
 	--set values.mixer.telemetry.enabled=false \
-	--set values.telemetry.enabled=false \
-	--set values.telemetry.v2.enabled=false \
-	--set values.tracing.enabled=false \
 	--set values.mixer.policy.enabled=false \
 	--set values.global.mtls.auto=true \
   	--set values.global.mtls.enabled=false \
+	--set values.grafana.enabled=true \
+	--set values.prometheus.enabled=true \
 	--set values.pilot.resources.requests.cpu=30m
 
 asm.proxy_status:
