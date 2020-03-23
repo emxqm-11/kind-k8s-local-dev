@@ -2,15 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: genesis
+  namespace: auth
 spec:
   selector:
     matchLabels:
-      app: schema-registry
-  replicas: 2
+      app: profile
+  replicas: 1
   template:
     metadata:
       labels:
-        app: schema-registry
+        app: profile
     spec:
       containers:
       - name: genesis
